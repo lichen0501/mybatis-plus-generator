@@ -2,6 +2,7 @@ package ${package.Controller};
 
 
 import org.springframework.web.bind.annotation.*;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import ${package.Entity}.${entity};
 import ${package.Service}.${table.serviceName};
@@ -49,7 +50,7 @@ public class ${table.controllerName} {
     }
 
     @PostMapping("/")
-    @ApiOperation(value = "新增{table.comment!}")
+    @ApiOperation(value = "新增${table.comment!}")
     public String addOne(@ModelAttribute ${entity} ${entity?uncap_first}) {
         return null;
     }
