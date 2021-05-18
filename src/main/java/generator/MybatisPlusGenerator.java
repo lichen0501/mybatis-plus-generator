@@ -34,24 +34,34 @@ public class MybatisPlusGenerator {
     private static String author = "lichen24";
 
     /**
-     * 父级实体类
-     */
-    private static String superEntityClass = "com.ecredit.ecreditmasterdata.entity.BaseEntity";
-
-    /**
-     * 是否使用restcontroller注解
-     */
-    private static boolean restController = true;
-
-    /**
      * 父级包名称
      */
-    private static String parentName = "com.ecredit.ecreditmasterdata";
+    private static String parentName = "com.ecredit.ecreditcustomer";
 
     /**
      * 模块名称(非必填)
      */
     private static String moduleName = "";
+
+    /**
+     * 父级实体类
+     */
+    private static String superEntityClass = "com.ecredit.ecreditcustomer.entity.BaseEntity";
+
+    /**
+     * 父级实体列
+     */
+    private static String[] superEntityColumns = {"create_time","update_time"};
+
+    /**
+     * 主键策略
+     */
+    private static IdType idType = IdType.ASSIGN_ID;
+
+    /**
+     * 是否使用restcontroller注解
+     */
+    private static boolean restController = true;
 
     /**
      * jdbc url地址
@@ -165,7 +175,7 @@ public class MybatisPlusGenerator {
         });
         //自定义模板输出
         List<FileOutConfig> fileOutConfigList = new ArrayList<>();
-        String xmlTemplatePath = "/templates/mapper.xml.ftl";
+        String xmlTemplatePath = "templates/mapper.xml.ftl";
         fileOutConfigList.add(new FileOutConfig(xmlTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
@@ -187,6 +197,12 @@ public class MybatisPlusGenerator {
     }
 
 
+    /**
+     * 获取表配置
+     * @param tableNames
+     * @param tablePrefix
+     * @return
+     */
     private static StrategyConfig getStrategyConfig(String[] tableNames, String tablePrefix) {
         return new StrategyConfig()
                 //表名策略
@@ -199,8 +215,8 @@ public class MybatisPlusGenerator {
                 .setInclude(tableNames)
                 //父级entity全类名
                 .setSuperEntityClass(superEntityClass)
-                //父级entity包含的列，通过逗号分隔
-                .setSuperEntityColumns(getSuperEntityColumns())
+                // 父级entity包含的列，通过逗号分隔
+                .setSuperEntityColumns(superEntityColumns)
                 //是否生成restController
                 .setRestControllerStyle(restController)
                 //controller名称类名横杆
@@ -213,10 +229,10 @@ public class MybatisPlusGenerator {
                 .setChainModel(true);
     }
 
-    private static String[] getSuperEntityColumns() {
-        return null;
-    }
-
+    /**
+     * 获取包配置
+     * @return
+     */
     private static PackageConfig getPackageConfig() {
         return new PackageConfig()
                 //父级包名称
@@ -274,8 +290,12 @@ public class MybatisPlusGenerator {
                 .setServiceImplName("%sServiceImpl")
                 //controller名称
                 .setControllerName("%sController")
+                //是否打开文件夹
+                .setOpen(false)
                 //id策略
-                .setIdType(IdType.NONE)
+                .setIdType(idType)
+                //swagger设置
+                .setSwagger2(true)
                 ;
     }
 
@@ -322,6 +342,11 @@ public class MybatisPlusGenerator {
                 .setXml(null);
     }
 
+    /**
+     * 输入输出
+     * @param tip
+     * @return
+     */
     private static String scanner(String tip) {
         Scanner scanner = new Scanner(System.in);
         StringBuilder sb = new StringBuilder();
