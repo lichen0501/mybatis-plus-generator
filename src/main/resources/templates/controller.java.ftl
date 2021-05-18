@@ -51,7 +51,7 @@ public class ${table.controllerName} {
 
     @PostMapping("/")
     @ApiOperation(value = "新增${table.comment!}")
-    public String addOne(@ModelAttribute ${entity} ${entity?uncap_first}) {
+    public String addOne(@RequestBody ${entity} ${entity?uncap_first}) {
         return null;
     }
 
@@ -63,7 +63,7 @@ public class ${table.controllerName} {
 
     @PutMapping("/{id}")
     @ApiOperation(value = "更新${table.comment!}")
-    public String update(@PathVariable Long id, @ModelAttribute ${entity} ${entity?uncap_first}) {
+    public String update(@PathVariable Long id, @RequestBody ${entity} ${entity?uncap_first}) {
         return null;
     }
 
