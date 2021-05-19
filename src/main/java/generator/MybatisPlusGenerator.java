@@ -175,7 +175,7 @@ public class MybatisPlusGenerator {
         });
         //自定义模板输出
         List<FileOutConfig> fileOutConfigList = new ArrayList<>();
-        String xmlTemplatePath = "templates/mapper.xml.ftl";
+        String xmlTemplatePath = "/templates/mapper.xml.ftl";
         fileOutConfigList.add(new FileOutConfig(xmlTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
