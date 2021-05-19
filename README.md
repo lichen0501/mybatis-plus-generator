@@ -7,13 +7,11 @@ mybatis-plus生成器和freemarker模板引擎
     <groupId>com.baomidou</groupId>
     <artifactId>mybatis-plus-generator</artifactId>
     <version>3.4.1</version>
-    <scope>provided</scope>
 </dependency>
 <dependency>
     <groupId>org.freemarker</groupId>
     <artifactId>freemarker</artifactId>
     <version>2.3.31</version>
-    <scope>provided</scope>
 </dependency>
 <!--mybatis-plus代码生成器-->
 ```
